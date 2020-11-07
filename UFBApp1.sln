@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30406.217
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UFBApp1", "UFBApp1\UFBApp1.csproj", "{C7108220-4EFB-4680-90C6-E784CB251828}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C7108220-4EFB-4680-90C6-E784CB251828}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7108220-4EFB-4680-90C6-E784CB251828}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7108220-4EFB-4680-90C6-E784CB251828}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7108220-4EFB-4680-90C6-E784CB251828}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E61EF058-D156-43B8-9097-72881CE84773}
+	EndGlobalSection
+EndGlobal

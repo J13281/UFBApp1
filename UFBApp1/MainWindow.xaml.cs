@@ -13,7 +13,7 @@ namespace UFBApp1
         SerialPort serial;
 
         double next = Environment.TickCount;
-        double wait = 1000.0 / 60.0;
+        double wait = 1000.0 / 360.0;
 
         public MainWindow()
         {
@@ -37,7 +37,7 @@ namespace UFBApp1
 
         void Init()
         {
-            ds4 = WrapedDS4.initFirst(new InputRange(0, 31));
+            ds4 = WrapedDS4.initFirst(new InputRange(0, 30));
             serial = new SerialPort { BaudRate = 9600, PortName = "COM3" };
             serial.Open();
         }
@@ -78,15 +78,10 @@ namespace UFBApp1
                 d[i / 4] |= (byte)(f << i % 4);
             }
 
-            //d[4] |= (byte)(ds4.lx);
-            //d[5] |= (byte)(ds4.ly);
-            //d[6] |= (byte)(ds4.rx);
-            //d[7] |= (byte)(ds4.ry);
-
-            d[4] |= (byte)15;
-            d[5] |= (byte)15;
-            d[6] |= (byte)15;
-            d[7] |= (byte)15;
+            d[4] |= (byte)(ds4.lx);
+            d[5] |= (byte)(ds4.ly);
+            d[6] |= (byte)(ds4.rx);
+            d[7] |= (byte)(ds4.ry);
 
             return d;
         }

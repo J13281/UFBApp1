@@ -71,28 +71,28 @@ namespace UFBApp1
 
         public static byte[] parse(WrapedDS4 ds4)
         {
-            var i4 = buttons(
+            var e = buttons(
                 0b100_00000000000, new[] {
                     ds4.btn0, ds4.btn1, ds4.btn2, ds4.btn3,
                     ds4.l1, ds4.l2, ds4.r1, ds4.r2, });
 
-            var i0 = 0b000_00000000000 | ds4.ly;
-            var i1 = 0b001_00000000000 | ds4.lx;
-            var i2 = 0b010_00000000000 | ds4.ry;
-            var i3 = 0b011_00000000000 | ds4.rx;
+            var a = 0b000_00000000000 | ds4.ly;
+            var b = 0b001_00000000000 | ds4.lx;
+            var c = 0b010_00000000000 | ds4.ry;
+            var d = 0b011_00000000000 | ds4.rx;
 
-            divide(i0, out var b0, out var b1);
-            divide(i1, out var b2, out var b3);
-            divide(i2, out var b4, out var b5);
-            divide(i3, out var b6, out var b7);
-            divide(i4, out var b8, out var b9);
+            divide(a, out var a0, out var a1);
+            divide(b, out var b0, out var b1);
+            divide(c, out var c0, out var c1);
+            divide(d, out var d0, out var d1);
+            divide(e, out var e0, out var e1);
 
             return new[] {
+                c0, c1,
+                a0, a1,
+                e0, e1,
+                d0, d1,
                 b0, b1,
-                b2, b3,
-                b4, b5,
-                b6, b7,
-                b8, b9,
             };
         }
     }

@@ -22,57 +22,54 @@ void setup() {
   Serial.begin(9600);
 }
 
+int b, c;
 void loop() {
   if (Serial.available()) {
-    logic(Serial.read());
+    if (m1(Serial.read(), &b, &c)) {
+      logic(c);
+    }
   }
 }
 
-void logic(int state) {
+bool m1(int a, int* b, int* c) {
+  if (a >> 7 & 1) {
+    *b = a;
+    return false;
+  } else if (*b >> 7 & 1) {
+    *c = (*b & 0b1111111) << 7 | (a & 0b1111111);
+    *b = 0;
+    return true;
+  } else {
+    return false;
+  }
+}
 
-  int head = state >> 5;
-  int body = state & 0x1F;
+// 000_00000000000
+void logic(int d) {
+  int head = d >> 11;
+  int body = d & 0b11111111111;
 
   if (head == 0) {
-    digitalWrite(2, state >> 0 & 1);
-    digitalWrite(3, state >> 1 & 1);
-    digitalWrite(4, state >> 2 & 1);
-    digitalWrite(5, state >> 3 & 1);
-  }
-  else if (head == 1) {
-    digitalWrite(6, state >> 0 & 1);
-    digitalWrite(7, state >> 1 & 1);
-    digitalWrite(8, state >> 2 & 1);
-    digitalWrite(9, state >> 3 & 1);
-  }
-  else if (head == 2) {
-    // digitalWrite(A0, state >> 0 & 1);
-    // digitalWrite(A1, state >> 1 & 1);
-    // digitalWrite(A2, state >> 2 & 1);
-    // digitalWrite(A3, state >> 3 & 1);
-  }
-  else if (head == 3) {
-    // empty
-  }
-  else if (head == 4) {
-    // ly
-    int p = 0xB000 | map(body, 0, 30, 0, 0xFFF);
+    int p = 0x3000 | map(body, 0, 0x7FF, 0, 0xFFF);
     mcp4922_out(A0, p);
-  }
-  else if (head == 5) {
-    // lx
-    int p = 0x3000 | map(body, 0, 30, 0, 0xFFF);
+  } else if (head == 1) {
+    int p = 0xB000 | map(body, 0, 0x7FF, 0, 0xFFF);
     mcp4922_out(A0, p);
-  }
-  else if (head == 6) {
-    // ry
-    int p = 0xB000 | map(body, 0, 30, 0, 0xFFF);
+  } else if (head == 2) {
+    int p = 0x3000 | map(body, 0, 0x7FF, 0, 0xFFF);
     mcp4922_out(A1, p);
-  }
-  else if (head == 7) {
-    // rx
-    int p = 0x3000 | map(body, 0, 30, 0, 0xFFF);
+  } else if (head == 3) {
+    int p = 0xB000 | map(body, 0, 0x7FF, 0, 0xFFF);
     mcp4922_out(A1, p);
+  } else if (head == 4) {
+    digitalWrite(2, body >> 0 & 1);
+    digitalWrite(3, body >> 1 & 1);
+    digitalWrite(4, body >> 2 & 1);
+    digitalWrite(5, body >> 3 & 1);
+    digitalWrite(6, body >> 4 & 1);
+    digitalWrite(7, body >> 5 & 1);
+    digitalWrite(8, body >> 6 & 1);
+    digitalWrite(9, body >> 7 & 1);
   }
 }
 

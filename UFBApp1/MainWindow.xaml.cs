@@ -13,7 +13,7 @@ namespace UFBApp1
         SerialPort serial;
 
         double next = Environment.TickCount;
-        double wait = 1000.0 / 60.0;
+        double wait = 1000.0 / 120.0;
 
         public MainWindow()
         {
